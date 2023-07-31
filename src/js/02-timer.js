@@ -31,7 +31,8 @@ const options = {
 flatpickr(mainInput, options)
 
 function timeCount (){setInterval(() => {console.log(convertMs(Date.parse(mainInput.value) - new Date()))
- const { days, hours, minutes, seconds } = convertMs();
+ 
+const { days, hours, minutes, seconds } = convertMs();
 
   days1.textContent = addZero(days);
   hours1.textContent = addZero(hours);
