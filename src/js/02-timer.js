@@ -8,6 +8,7 @@ const hours1 = document.querySelector('[data-hours]');
 const min1 = document.querySelector('[data-minutes]');
 const sec1 = document.querySelector('[data-seconds]');
 const date = new Date();
+let timerId = null;
 startBtn.addEventListener('click', timeCount)
 
 
@@ -30,9 +31,13 @@ const options = {
   startBtn.disabled = true;
 flatpickr(mainInput, options)
 
-function timeCount (){setInterval(() => {console.log(convertMs(Date.parse(mainInput.value) - new Date()))
+function timeCount (){ 
+    startBtn.disabled = true;
+    // startBtn.removeEventListener('click', timeCount);
+    
+    timerId = setInterval(() => {console.log(convertMs(Date.parse(mainInput.value) - new Date()))
  
-const { days, hours, minutes, seconds } = convertMs();
+const { days, hours, minutes, seconds } = convertMs(Date.parse(mainInput.value) - new Date());
 
   days1.textContent = addZero(days);
   hours1.textContent = addZero(hours);
@@ -42,14 +47,15 @@ const { days, hours, minutes, seconds } = convertMs();
 
   function addZero(value) {
     return value.toString().padStart(2, '0');
-    
   }
-},1000);
-
-
-
-
+  
+if(days1.textContent && hours1.textContent && min1.textContent  && sec1.textContent === "00" )
+   {clearInterval(timerId);
 }
+
+},1000);}
+
+
 
 function convertMs(ms) {
         const second = 1000;
