@@ -30,9 +30,20 @@ const options = {
   startBtn.disabled = true;
 flatpickr(mainInput, options)
 
-function timeCount (){setInterval(() => {console.log(convertMs(Date.parse(mainInput.value) - new Date()))},1000);
+function timeCount (){setInterval(() => {console.log(convertMs(Date.parse(mainInput.value) - new Date()))
+ const { days, hours, minutes, seconds } = convertMs();
+
+  days1.textContent = days.toString().padStart(2, '0');
+  hours1.textContent = hours;
+  min1.textContent = minutes;
+  sec1.textContent = seconds;
+},1000);
+
+
+
 
 }
+
 function convertMs(ms) {
         const second = 1000;
     const minute = second * 60;
@@ -53,12 +64,7 @@ function convertMs(ms) {
 
   }
 
+ 
 
- function createTimer () {
-  days1.textContent = days;
-  hours1.textContent = hours;
-  min1.textContent = minutes;
-  sec1.textContent = seconds;
-}
-
+  
 
